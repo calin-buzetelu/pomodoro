@@ -1,0 +1,43 @@
+.timerContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+  background: #212121;
+  box-shadow: 15px 15px 30px rgb(25, 25, 25),
+    -15px -15px 30px rgb(60, 60, 60);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn {
+  transition: all 0.3s ease-in-out;
+  font-family: "Dosis", sans-serif;
+}
+
+.btn {
+  width: 150px;
+  height: 60px;
+  border-radius: 50px;
+  background-image: linear-gradient(135deg, #feb692 0%, rgb(240, 128, 128) 100%);
+  box-shadow: -3px -3px 10px rgba(240, 128, 128, 0.5);
+  outline: none;
+  cursor: pointer;
+  border: none;
+  font-size: 24px;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.btn:active {
+  opacity: 0.5;
+}
