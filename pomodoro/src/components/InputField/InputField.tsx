@@ -7,9 +7,12 @@ const InputField = (props: InputFieldProp) => {
         <div className={classes['input-wrapper']}>
             <input
                 type="number"
+                min={1}
+                max={59}
                 placeholder={props.placeholder}
                 name="text"
-                className="input">
+                className="input"
+                onChange={props.onChange}>
             </input>
         </div>
     );

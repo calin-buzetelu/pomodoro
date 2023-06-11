@@ -5,7 +5,7 @@
     font-size: 1rem;
     width: 12em;
     border-radius: 1rem;
-    color: #f08080;
+    color: rgb(240, 127, 127);
     box-shadow: 0 0.4rem #dfd9d9;
     cursor: pointer;
 }
