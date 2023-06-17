@@ -1,10 +1,10 @@
 import InputField from "./InputField/InputField";
 
-export function TimerForm(props: {
+const TimerForm = (props: {
     workTimeSubmitHandler: any,
     breakTimeChangeHandler: any,
     startTimerHandler: any
-}) {
+}) => {
     return <>
         <InputField placeholder='Work (in minutes)' onChange={props.workTimeSubmitHandler} />
         <br></br>
@@ -13,3 +13,5 @@ export function TimerForm(props: {
         <button className="btn" onClick={props.startTimerHandler}>Start</button>
     </>;
 }
+
+export default TimerForm

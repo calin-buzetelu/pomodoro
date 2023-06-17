@@ -9,7 +9,7 @@ const formatSeconds = (seconds: number): string => {
     return date.toISOString().slice(14, 19);
 }
 
-export function TimerController(props: ControllerProp) {
+const TimerController = (props: ControllerProp) => {
     const progressbarStyle = {
         pathTransitionDuration: 0.5,
         pathColor: `rgb(240, 127, 127, ${(props.mode === 'work' ? props.workTime : props.breakTime) / props.initialTotalTime})`,
@@ -17,15 +17,25 @@ export function TimerController(props: ControllerProp) {
         trailColor: '#dfd9d9'
     }
 
+    const getValue = (props: ControllerProp): number => {
+        return (props.mode === 'work' ? props.workTime : props.breakTime) / props.initialTotalTime * 100;
+    }
+
+    const getText = (props: ControllerProp): string => {
+        return props.mode === 'work' ? `${formatSeconds(props.workTime)}` : `${formatSeconds(props.breakTime)}`;
+    }
+
     return (<>
         <h2>{props.mode === 'work' ? 'Remaining work time:' : 'Reamining break time:'}</h2>
         <div style={{ width: 200, height: 200 }}>
             <CircularProgressbar
-                value={(props.mode === 'work' ? props.workTime : props.breakTime) / props.initialTotalTime * 100}
-                text={props.mode === 'work' ? `${formatSeconds(props.workTime)}` : `${formatSeconds(props.breakTime)}`}
+                value={getValue(props)}
+                text={getText(props)}
                 styles={buildStyles(progressbarStyle)}></CircularProgressbar>
         </div>
         <br></br>
         <button className="btn" onClick={props.resetHandler}>Cancel</button>
     </>);
 }
+
+export default TimerController;
