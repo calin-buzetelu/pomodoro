@@ -1,0 +1,15 @@
+import InputField from "./InputField/InputField";
+
+export function TimerForm(props: {
+    workTimeSubmitHandler: any,
+    breakTimeChangeHandler: any,
+    startTimerHandler: any
+}) {
+    return <>
+        <InputField placeholder='Work (in minutes)' onChange={props.workTimeSubmitHandler} />
+        <br></br>
+        <InputField placeholder='Rest (in minutes)' onChange={props.breakTimeChangeHandler} />
+        <br></br>
+        <button className="btn" onClick={props.startTimerHandler}>Start</button>
+    </>;
+}

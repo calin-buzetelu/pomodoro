@@ -1,9 +1,7 @@
+import { TimerForm } from './components/TimerForm';
+import { TimerController } from './components/Controller/TimerController';
 import { ChangeEvent, useState, useEffect } from 'react'
 import './App.css'
-import InputField from './components/InputField/InputField'
-
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 
 function App() {
 
@@ -13,14 +11,7 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [mode, setMode] = useState('work');
 
-  const progressbarStyle = {
-    pathTransitionDuration: 0.5,
-    pathColor: `rgb(240, 127, 127, ${(mode === 'work' ? workTime : breakTime) / initialTotalTime})`,
-    textColor: '#f88',
-    trailColor: '#dfd9d9'
-  }
-
-  const reset = () => {
+  const resetHandler = () => {
     setIsActive(false);
   }
 
@@ -42,7 +33,7 @@ function App() {
       console.log(breakTime);
       setBreakTime(breakTime => breakTime - 1);
       if (breakTime === 0) {
-        return reset();
+        return resetHandler();
       }
     }
     let interval: number | undefined = undefined;
@@ -54,42 +45,33 @@ function App() {
     return () => clearInterval(interval);
   }, [isActive, workTime, breakTime, mode]);
 
-  const workTimeChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const workTimeChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
     setWorkTime(Number(event.target.value) * 60);
     setInitialTotalTime(Number(event.target.value) * 60)
   }
 
-  const breakTimeChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const breakTimeChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
     setBreakTime(Number(event.target.value) * 60);
   }
 
   return (
     <>
       <div className='timerContainer'>
-        {!isActive &&
-          <>
-            <InputField placeholder='Work (in minutes)' onChange={workTimeChangeHandler} />
-            <br></br>
-            <InputField placeholder='Rest (in minutes)' onChange={breakTimeChangeHandler} />
-            <br></br>
-            <button className="btn" onClick={startTimerHandler}>Start</button>
-          </>
+        {!isActive && <TimerForm
+          workTimeSubmitHandler={workTimeChangeHandler}
+          breakTimeChangeHandler={breakTimeChangeHandler}
+          startTimerHandler={startTimerHandler} />
         }
-        {isActive &&
-          <>
-            <div style={{ width: 200, height: 200 }}>
-              <CircularProgressbar
-                value={((mode === 'work' ? workTime : breakTime) / initialTotalTime) * 100}
-                text={mode === 'work' ? `${workTime}` : `${breakTime}`}
-                styles={buildStyles(progressbarStyle)}></CircularProgressbar>
-            </div>
-            <br></br>
-            <button className="btn" onClick={reset}>Cancel</button>
-          </>
+        {isActive && <TimerController
+          mode={mode}
+          workTime={workTime}
+          breakTime={breakTime}
+          initialTotalTime={initialTotalTime}
+          resetHandler={resetHandler} />
         }
       </div >
     </>
   )
 }
 
-export default App
+export default App;
