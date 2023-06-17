@@ -3,6 +3,7 @@ import { ControllerProp } from "./ControllerProp";
 
 import { buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import styles from './TimerController.module.css';
 
 const formatSeconds = (seconds: number): string => {
     const date = new Date(seconds * 1000);
@@ -26,7 +27,7 @@ const TimerController = (props: ControllerProp) => {
     }
 
     return (<>
-        <h2>{props.mode === 'work' ? 'Remaining work time:' : 'Reamining break time:'}</h2>
+        <h2 className={styles.h2}>{props.mode === 'work' ? 'Remaining work time:' : 'Reamining break time:'}</h2>
         <div style={{ width: 200, height: 200 }}>
             <CircularProgressbar
                 value={getValue(props)}

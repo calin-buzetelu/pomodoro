@@ -1,4 +1,4 @@
-import TimerForm from './components/TimerForm';
+import TimerForm from './components/Form/TimerForm';
 import TimerController from './components/Controller/TimerController';
 import { ChangeEvent, useState, useEffect } from 'react'
 import './App.css'

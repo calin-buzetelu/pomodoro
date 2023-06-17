@@ -1,4 +1,4 @@
-import InputField from "./InputField/InputField";
+import InputField from "./InputField";
 
 const TimerForm = (props: {
     workTimeSubmitHandler: any,
@@ -6,6 +6,7 @@ const TimerForm = (props: {
     startTimerHandler: any
 }) => {
     return <>
+        <h1>Pomodoro Time Tracker</h1>
         <InputField placeholder='Work (in minutes)' onChange={props.workTimeSubmitHandler} />
         <br></br>
         <InputField placeholder='Rest (in minutes)' onChange={props.breakTimeChangeHandler} />
