@@ -3,5 +3,5 @@ export interface ControllerProp {
     workTime: number,
     breakTime: number,
     initialTotalTime: number,
-    resetHandler: any
+    resetHandler: () => void
 }

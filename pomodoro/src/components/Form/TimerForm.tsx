@@ -1,9 +1,10 @@
+import { ChangeEvent } from "react";
 import InputField from "./InputField";
 
 const TimerForm = (props: {
-    workTimeSubmitHandler: any,
-    breakTimeChangeHandler: any,
-    startTimerHandler: any
+    workTimeSubmitHandler: (event: ChangeEvent<HTMLInputElement>) => void,
+    breakTimeChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void,
+    startTimerHandler: () => void
 }) => {
     return <>
         <h1>Pomodoro Time Tracker</h1>
